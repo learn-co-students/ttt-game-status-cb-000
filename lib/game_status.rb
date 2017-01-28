@@ -4,57 +4,75 @@ def position_taken?(board, index)
 end
 
 # Define your WIN_COMBINATIONS constant
-WIN_COMBINATIONS =  [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-
+WIN_COMBINATIONS =  [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+#board = ["O", "O", "X","O", "O", "X","O", "X", "O"]
+#board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+#board = ["X", " ", " ", "X", " ", " ", "X", " ", " "]
 def won?(board)
-    filledX = board.include?("X")
-    filledO = board.include?("O")
-    emptySpace = board.include?(" ")
-    nilSpace = board.include?(nil)
 
 
-    if filledX == false && filledO == false
-        return false
 
-    end
-
-    if emptySpace == false && nilSpace == false
-        return false
-    end
 
     WIN_COMBINATIONS.each do |winArray|
 
         index1 = winArray[0]
+
         index2 = winArray[1]
         index3 = winArray[2]
 
-        if board[index1] == "X" && board[index2] == "X" && board[index3] == "X"
-            return index1,index2,index3
-        end
-        if board[index1] == "O" && board[index2] == "O" && board[index3] == "O"
-            return index1,index2,index3
+        position1 = board[index1]
+        position2 = board[index2]
+        position3 = board[index3]
+
+
+        if (position1 == "X" && position2 == "X" && position3 == "X") || (position1 == "O" && position2 == "O" && position3 == "O")
+
+            return winArray
+          else
+
         end
 
+
+
+
     end #end of WIN_COMBINATIONS.each
+false
 end
 
 def full?(board)
     emptySpace = board.include?(" ")
     nilSpace = board.include?(nil)
 
-    if emptySpace == false && nilSpace == false
-        return true
-    end
+    !(emptySpace || nilSpace)
 
 end
 
 def draw?(board)
+   if full?(board) == true && won?(board) == false
+     true
 
-    if won?(board) == false && full?(board) == true
-        return true
-    end
-        return false
+   else
+     false
 
+   end
 
+ end
+
+def over?(board)
+  won?(board) || draw?(board) || full?(board)
+
+end
+
+def winner(board)
+
+  if won?(board) != false
+
+    winComb = won?(board)
+    winner = board[winComb[0]]
+  
+
+else
+  nil
+end
 
 end
