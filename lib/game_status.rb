@@ -41,27 +41,15 @@ def full?(board)
 end
 
 def draw?(board)
-  if board == ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
-    return true
-  else
-    return false
-  end
+  full?(board) && !won?(board)
 end
 
 def over?(board)
-  if board == ["X", "O", "X", "O", "X", "X", "O", "X", "O"] || board == ["X", "O", "X", "O", "X", "X", "O", "O", "X"]
-    return true
-  else
-    return false
-  end
+  won?(board) || full?(board)
 end
 
 def winner(board)
-  if board == ["X", " ", " ", " ", "X", " ", " ", " ", "X"]
-    return "X"
-  elsif board == ["X", "O", " ", " ", "O", " ", " ", "O", "X"]
-    return "O"
-  else
-    return nil
+  if winning_combo = won?(board)
+    board[winning_combo.first]
   end
 end
