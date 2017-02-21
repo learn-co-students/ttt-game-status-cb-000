@@ -4,3 +4,86 @@ def position_taken?(board, index)
 end
 
 # Define your WIN_COMBINATIONS constant
+WIN_COMBINATIONS=[
+  [0,1,2],
+  [3,4,5],
+  [6,7,8],
+  [0,3,6],
+  [1,4,7],
+  [2,5,8],
+  [0,4,8],
+  [2,4,6]
+]
+
+# def won?(board)
+#   if WIN_COMBINATIONS.any? do |combo|
+#     combo.all? do |index|
+#       board[index]=="X"
+#     end
+#   end
+#   return combo
+#
+# elsif WIN_COMBINATIONS.any? do |combo|
+#       combo.all? do |index|
+#         board[index]=="O"
+#       end
+#     end
+#     return combo
+#   end
+# end
+def won?(board)
+  xxx=WIN_COMBINATIONS.detect do |combo|
+    combo.all? do |index|
+      board[index]=="X"
+    end
+  end
+  ooo=WIN_COMBINATIONS.detect do |combo|
+    combo.all? do |index|
+      board[index]=="O"
+    end
+  end
+  if xxx==nil &&ooo==nil
+    return nil
+  elsif xxx==nil
+    return ooo
+  elsif ooo==nil
+    return xxx
+  end
+end
+
+def full?(board)
+  if !board.include?(" ")
+    return  true
+  else
+    return false
+  end
+end
+
+def draw?(board)
+  if full?(board) && !won?(board)
+    return true
+  else
+    return false
+  end
+end
+
+def over?(board)
+  if draw?(board)||won?(board)
+    return true
+  else
+    return false
+  end
+end
+
+def winner(board)
+  if won?(board)
+    array=won?(board)
+    if board[array[0]]=="O"
+      return "O"
+    elsif board[array[0]]=="X"
+      return "X"
+    end
+  else
+    return nil
+  end
+end
