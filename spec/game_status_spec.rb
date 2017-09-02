@@ -1,4 +1,5 @@
 require_relative '../lib/game_status.rb'
+require 'pry'
 
 describe "./lib/game_status.rb" do
   describe 'WIN_COMBINATIONS' do
@@ -147,7 +148,6 @@ describe "./lib/game_status.rb" do
   describe '#winner' do
     it 'return X when X won' do
       board = ["X", " ", " ", " ", "X", " ", " ", " ", "X"]
-
       expect(winner(board)).to eq("X")
     end
 
