@@ -16,11 +16,11 @@ WIN_COMBINATIONS = [
 ]
 
 def won?(board)
-  WIN_COMBINATIONS.detect do | extract |
+  WIN_COMBINATIONS.detect do | win_combination |
 
-    win_index_1 = extract[0]
-    win_index_2 = extract[1]
-    win_index_3 = extract[2]
+    win_index_1 = win_combination[0]
+    win_index_2 = win_combination[1]
+    win_index_3 = win_combination[2]
 
     position_1 = board[win_index_1]
     position_2 = board[win_index_2]
@@ -29,9 +29,9 @@ def won?(board)
 if position_taken?(board, win_index_1) && position_taken?(board, win_index_2) && position_taken?(board, win_index_3)
 
     if position_1 == "X" && position_2 == "X" && position_3 == "X"
-      return extract
+      return win_combination
     elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
-      return extract
+      return win_combination
     elsif board[WIN_COMBINATIONS[6][0]] == "X" && board[WIN_COMBINATIONS[6][1]] == "X" && board[WIN_COMBINATIONS[6][2]] == "X"
       return [0,4,8]
     elsif board[WIN_COMBINATIONS[6][0]] == "O" && board[WIN_COMBINATIONS[6][1]] == "O" && board[WIN_COMBINATIONS[6][2]] == "O"
