@@ -1,4 +1,5 @@
 # Helper Method
+
 def position_taken?(board, index)
   !(board[index].nil? || board[index] == " ")
 end
@@ -9,34 +10,18 @@ WIN_COMBINATIONS =  [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,
 #board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 #board = ["X", " ", " ", "X", " ", " ", "X", " ", " "]
 def won?(board)
-
-
-
-
-    WIN_COMBINATIONS.each do |winArray|
-
-        index1 = winArray[0]
-
-        index2 = winArray[1]
-        index3 = winArray[2]
-
-        position1 = board[index1]
-        position2 = board[index2]
-        position3 = board[index3]
-
-
-        if (position1 == "X" && position2 == "X" && position3 == "X") || (position1 == "O" && position2 == "O" && position3 == "O")
-
-            return winArray
-          else
-
-        end
-
-
-
-
+    winner = WIN_COMBINATIONS.detect do |winArray|
+        position1 = board[winArray[0]]
+        position2 = board[winArray[1]]
+        position3 = board[winArray[2]]
+        (position1 == "X" && position2 == "X" && position3 == "X") || (position1 == "O" && position2 == "O" && position3 == "O")
     end #end of WIN_COMBINATIONS.each
-false
+
+    if !winner.nil?
+      winner
+    else
+      false
+    end
 end
 
 def full?(board)
@@ -69,7 +54,7 @@ def winner(board)
 
     winComb = won?(board)
     winner = board[winComb[0]]
-  
+
 
 else
   nil
