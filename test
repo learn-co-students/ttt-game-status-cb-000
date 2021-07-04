@@ -1,0 +1,5 @@
+def test(board_name)
+    board_name.any? do |board_items|
+      board_items == "X"
+ end
+end
