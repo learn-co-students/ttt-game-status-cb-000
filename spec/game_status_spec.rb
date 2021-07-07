@@ -112,7 +112,7 @@ describe "./lib/game_status.rb" do
     end
 
     it 'returns false for an in-progress game' do
-      board = ["X", " ", "X", " ", "X", " ", "O", "O", "X"]
+      board = [" ", "X", "X", " ", "X", " ", "O", "O", "X"]
 
       expect(draw?(board)).to be_falsey
     end
