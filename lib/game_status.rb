@@ -4,3 +4,91 @@ def position_taken?(board, index)
 end
 
 # Define your WIN_COMBINATIONS constant
+WIN_COMBINATIONS = [
+  [0,1,2],
+  [3,4,5],
+  [6,7,8],
+  [0,3,6],
+  [1,4,7],
+  [2,5,8],
+  [0,4,8],
+  [2,4,6]
+]
+
+def won?(board)
+  win_index_1 = WIN_COMBINATIONS[0]
+  win_index_2 = WIN_COMBINATIONS[1]
+  win_index_3 = WIN_COMBINATIONS[2]
+  win_index_4 = WIN_COMBINATIONS[3]
+  win_index_5 = WIN_COMBINATIONS[4]
+  win_index_6 = WIN_COMBINATIONS[5]
+  win_index_7 = WIN_COMBINATIONS[6]
+  win_index_8 = WIN_COMBINATIONS[7]
+
+  if board[win_index_1[0]] == "X" && board[win_index_1[1]] == "X" && board[win_index_1[2]] == "X"
+    win_index_1
+  elsif board[win_index_1[0]] == "O" && board[win_index_1[1]] == "O" && board[win_index_1[2]] == "O"
+    win_index_1
+  elsif board[win_index_2[0]] == "X" && board[win_index_2[1]] == "X" && board[win_index_2[2]] == "X"
+    win_index_2
+  elsif board[win_index_2[0]] == "O" && board[win_index_2[1]] == "O" && board[win_index_2[2]] == "O"
+    win_index_2
+  elsif board[win_index_3[0]] == "X" && board[win_index_3[1]] == "X" && board[win_index_3[2]] == "X"
+    win_index_3
+  elsif board[win_index_3[0]] == "O" && board[win_index_3[1]] == "O" && board[win_index_3[2]] == "O"
+    win_index_3
+  elsif board[win_index_4[0]] == "X" && board[win_index_4[1]] == "X" && board[win_index_4[2]] == "X"
+    win_index_4
+  elsif board[win_index_4[0]] == "O" && board[win_index_4[1]] == "O" && board[win_index_4[2]] == "O"
+    win_index_4
+  elsif board[win_index_5[0]] == "X" && board[win_index_5[1]] == "X" && board[win_index_5[2]] == "X"
+    win_index_5
+  elsif board[win_index_5[0]] == "O" && board[win_index_5[1]] == "O" && board[win_index_5[2]] == "O"
+    win_index_5
+  elsif board[win_index_6[0]] == "X" && board[win_index_6[1]] == "X" && board[win_index_6[2]] == "X"
+    win_index_6
+  elsif board[win_index_6[0]] == "O" && board[win_index_6[1]] == "O" && board[win_index_6[2]] == "O"
+    win_index_6
+  elsif board[win_index_7[0]] == "X" && board[win_index_7[1]] == "X" && board[win_index_7[2]] == "X"
+    win_index_7
+  elsif board[win_index_7[0]] == "O" && board[win_index_7[1]] == "O" && board[win_index_7[2]] == "O"
+    win_index_7
+  elsif board[win_index_8[0]] == "X" && board[win_index_8[1]] == "X" && board[win_index_8[2]] == "X"
+    win_index_8
+  elsif board[win_index_8[0]] == "O" && board[win_index_8[1]] == "O" && board[win_index_8[2]] == "O"
+    win_index_8
+  elsif !board.all?{|i| i == " "}
+  else
+    false
+  end
+end
+
+def full?(board)
+  !board.any?{|i| i == " "}
+end
+
+def draw?(board)
+  if !won?(board) && full?(board)
+    true
+  elsif !won?(board) && !full?(board)
+    false
+   end
+end
+
+def over?(board)
+  if won?(board) || draw?(board) || full?(board)
+    true
+  end
+end
+
+def winner(board)
+  if won?(board) != nil
+    if won?(board).any?{|i| board[i] == "X"}
+      return "X"
+    elsif won?(board).any?{|i| board[i] == "O"}
+      return "O"
+    end
+  else
+        nil
+  end
+end
